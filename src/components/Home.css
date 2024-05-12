@@ -1,0 +1,16 @@
+.container {
+    position: relative;
+    size: 100%;
+  }
+  .logo {
+    height: 25%;
+    width: 50%;
+  }
+  
+  .text {
+    position: absolute;
+    bottom: 20vh;
+    left: 40vh;
+    color: white;
+  }
+  

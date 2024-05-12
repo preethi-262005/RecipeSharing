@@ -1,0 +1,116 @@
+
+###user registration
+post http://localhost:3100/user-api/user
+Content-Type: application/json
+
+{
+    "userType":"user",
+    "username":"ravi",
+    "password":"ravi",
+    "email":"ravi@mail.com"
+}
+
+###user login 
+post http://localhost:3100/user-api/login
+Content-Type: application/json
+
+{
+    "userType":"user",
+    "username":"ravi",
+    "password":"ravi"
+    
+}
+
+###author registration
+post http://localhost:3100/chef-api/chef
+Content-Type: application/json
+
+{
+    "userType":"chef",
+    "username":"bhanu",
+    "password":"bhanu",
+    "email":"bhanu@mail.com"
+}
+
+###author login
+post http://localhost:3100/chef-api/login
+Content-Type: application/json
+
+{
+    "userType":"chef",
+    "username":"mahi",
+    "password":"mahi"
+   
+}
+
+
+### add new article
+post http://localhost:3100/chef-api/new-recipe
+Content-Type: application/json
+
+{
+   "recipeId":"{{$timestamp}}",
+   "title":"Chicken curry",
+   "cuisine":"India",
+   "content":"JavaScript's dynamic capabilities include runtime object construction, variable parameter lists, function variables, dynamic script creation object introspection (via for...in and Object utilities, and source-code recovery JavaScript functions store their source text and can be retrieved ",
+   "time":"2h",
+   "dateOfCreation":"{{$datetime iso8601}}",
+   "dateOfModification":"{{$datetime iso8601}}",
+   "username":"mahi",
+   "comments": [ ],
+   "status":true
+   
+}
+### read articles by author's username
+get http://localhost:3100/chef-api/recipe/mahi
+
+### edit article
+put http://localhost:3100/chef-api/recipe
+Content-Type: application/json
+
+{
+   "recipeId":"1715438505",
+   "title":"Fundamentals of JavaScript",
+   "cuisine":"programming",
+   "content":" variable parameter lists, function variables, dynamic script creation object introspection (via for...in and Object utilities, and source-code recovery JavaScript functions store their source text and can be retrieved ",
+   "time":"2h",
+   "dateOfCreation":"2024-02-29T13:54:52.963Z",
+   "dateOfModification":"{{$datetime iso8601}}",
+   "username":"bhanu",
+   "comments": [ ],
+   "status":true
+   
+}
+
+
+### soft delete(update) of an article by id
+put http://localhost:3100/chef-api/recipe/1715438505
+Content-Type: application/json
+
+{
+   "recipeId":"1715438505",
+   "title":"Fundamentals of JavaScript",
+   "cuisine":"programming",
+   "content":" variable parameter lists, function variables, dynamic script creation object introspection (via for...in and Object utilities, and source-code recovery JavaScript functions store their source text and can be retrieved ",
+   "time":"2h",
+   "dateOfCreation":"2024-02-29T13:54:52.963Z",
+   "dateOfModification":"{{$datetime iso8601}}",
+   "username":"bhanu",
+   "comments": [ ],
+   "status":false
+   
+}
+
+
+### read articles of all authors by a user
+get  http://localhost:3100/user-api/recipe
+
+
+### write comment by user
+post http://localhost:3100/user-api/comment/1715438505
+Content-Type: application/json
+
+{
+    "username":"ravi",
+    "comment":"Very useful"
+}
